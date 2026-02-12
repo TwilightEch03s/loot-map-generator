@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0a2a4bbc9a85a405e80586b1516bfd75
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - lootPrefab: {fileID: 972117938292314008, guid: f604fbac39ffd47258b54b06aafbcc19, type: 3}
+  - poiPrefab: {fileID: 6109722687038911872, guid: 3da4813eb5d0b4d48b7813e6807a51e2, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
