@@ -22,52 +22,52 @@ Parameter changes will immediately affect how POIs and loot are generated across
 
 ### POI Parameters
 
-- **Poi Count** – Number of POIs on the map
-- **Poi Size Min** – Minimum size of the POI
-- **Poi Size Max** – Maximum size of the POI
+- <u>**Poi Count**</u> – Number of POIs on the map
+- <u>**Poi Size Min**</u> – Minimum size of the POI
+- <u>**Poi Size Max**</u> – Maximum size of the POI
 
-- **Easy Poi Chance** - Chance of an easy POI spawning (Ranges from 0 -1 )
-- **Medium Poi Chance** - Chance of a medium POI spawning (Ranges from 0 - 1)
-- **Hard Poi Chance** - Chance of a hard POI spawning (Ranges from 0 - 1)
-- **Island Size** - Dimensions of the island (x, y)
+- <u>**Easy Poi Chance**</u> - Chance of an easy POI spawning (Ranges from 0 -1 )
+- <u>**Medium Poi Chance**</u> - Chance of a medium POI spawning (Ranges from 0 - 1)
+- <u>**Hard Poi Chance**</u> - Chance of a hard POI spawning (Ranges from 0 - 1)
+- <u>**Island Size**</u> - Dimensions of the island (x, y)
 
 ### Loot Parameters
 
-- **Loot Per POI** - Amount of loot generated in each POI
-- **Random Loot Count** - Amount of loot generated outside the POI
-- **Island Size** - Dimensions of the island (x, y)
+- <u>**Loot Per POI**</u> - Amount of loot generated in each POI
+- <u>**Random Loot Count**</u> - Amount of loot generated outside the POI
+- <u>**Island Size**</u> - Dimensions of the island (x, y)
 
 #### Easy POI Rarity Chances
 
-- **Easy Common Chance** - Percentage of common loot spawning in easy POI (Ranges from %0 - %100)
-- **Easy Uncommon Chance** - Percentage of uncommon loot spawning in easy POI (Ranges from %0 -% 100)
-- **Easy Rare Chance** - Percentage of rare loot spawning in easy POI (Ranges from %0 - %100)
-- **Easy Epic Chance** - Percentage of epic loot spawning in easy POI (Ranges from %0 - %100)
-- **Easy Legendary Chance** - Percentage of legendary loot spawning in easy POI (Ranges from %0 - %100)
+- <u>**Easy Common Chance**</u> - Percentage of common loot spawning in easy POI (Ranges from %0 - %100)
+- <u>**Easy Uncommon Chance**</u> - Percentage of uncommon loot spawning in easy POI (Ranges from %0 -% 100)
+- <u>**Easy Rare Chance**</u> - Percentage of rare loot spawning in easy POI (Ranges from %0 - %100)
+- <u>**Easy Epic Chance**</u> - Percentage of epic loot spawning in easy POI (Ranges from %0 - %100)
+- <u>**Easy Legendary Chance**</u> - Percentage of legendary loot spawning in easy POI (Ranges from %0 - %100)
 
 #### Medium POI Rarity Chances
 
-- **Medium Common Chance** - Percentage of common loot spawning in medium POI (Ranges from %0 - %100)
-- **Medium Uncommon Chance** - Percentage of uncommon loot spawning in medium POI (Ranges from %0 -% 100)
-- **Medium Rare Chance** - Percentage of rare loot spawning in medium POI (Ranges from %0 - %100)
-- **Medium Epic Chance** - Percentage of epic loot spawning in medium POI (Ranges from %0 - %100)
-- **Medium Legendary Chance** - Percentage of legendary loot spawning in medium POI (Ranges from %0 - %100)
+- <u>**Medium Common Chance**</u> - Percentage of common loot spawning in medium POI (Ranges from %0 - %100)
+- <u>**Medium Uncommon Chance**</u> - Percentage of uncommon loot spawning in medium POI (Ranges from %0 -% 100)
+- <u>**Medium Rare Chance**</u> - Percentage of rare loot spawning in medium POI (Ranges from %0 - %100)
+- <u>**Medium Epic Chance**</u> - Percentage of epic loot spawning in medium POI (Ranges from %0 - %100)
+- <u>**Medium Legendary Chance**</u> - Percentage of legendary loot spawning in medium POI (Ranges from %0 - %100)
 
 #### Hard POI Rarity Chances
 
-- **Hard Common Chance** - Percentage of common loot spawning in hard POI (Ranges from %0 - %100)
-- **Hard Uncommon Chance** - Percentage of uncommon loot spawning in hard POI (Ranges from %0 -% 100)
-- **Hard Rare Chance** - Percentage of rare loot spawning in hard POI (Ranges from %0 - %100)
-- **Hard Epic Chance** - Percentage of epic loot spawning in hard POI (Ranges from %0 - %100)
-- **Hard Legendary Chance** - Percentage of legendary loot spawning in hard POI (Ranges from %0 - %100)
+- <u>**Hard Common Chance**</u> - Percentage of common loot spawning in hard POI (Ranges from %0 - %100)
+- <u>**Hard Uncommon Chance**</u> - Percentage of uncommon loot spawning in hard POI (Ranges from %0 -% 100)
+- <u>**Hard Rare Chance**</u> - Percentage of rare loot spawning in hard POI (Ranges from %0 - %100)
+- <u>**Hard Epic Chance**</u> - Percentage of epic loot spawning in hard POI (Ranges from %0 - %100)
+- <u>**Hard Legendary Chance**</u> - Percentage of legendary loot spawning in hard POI (Ranges from %0 - %100)
 
 #### Random Loot Rarity Chances
 
-- **Random Common Chance** - Percentage of common loot spawning outside of a POI (Ranges from %0 - %100)
-- **Random Uncommon Chance** - Percentage of uncommon loot spawning outside of a POI (Ranges from %0 -% 100)
-- **Random Rare Chance** - Percentage of rare loot spawning outside of a POI (Ranges from %0 - %100)
-- **Random Epic Chance** - Percentage of epic loot spawning outside of a POI (Ranges from %0 - %100)
-- **Random Legendary Chance** - Percentage of legendary loot spawning outside of a POI (Ranges from %0 - %100)
+- <u>**Random Common Chance**</u> - Percentage of common loot spawning outside of a POI (Ranges from %0 - %100)
+- <u>**Random Uncommon Chance**</u> - Percentage of uncommon loot spawning outside of a POI (Ranges from %0 -% 100)
+- <u>**Random Rare Chance**</u> - Percentage of rare loot spawning outside of a POI (Ranges from %0 - %100)
+- <u>**Random Epic Chance**</u> - Percentage of epic loot spawning outside of a POI (Ranges from %0 - %100)
+- <u>**Random Legendary Chance**</u> - Percentage of legendary loot spawning outside of a POI (Ranges from %0 - %100)
 
 ---
 
