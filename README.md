@@ -14,6 +14,7 @@
    - In the in-game **settings panel**, or  
    - By selecting either `LootManager` or `PoiGenerator` in the **Hierarchy** and modifying their settings.
 4. If you want to save your map generation, click the **save generation** button to save a JSON file containing loot and POI positions.
+
 Parameter changes will immediately affect how POIs and loot are generated across the map.
 
 ---
@@ -76,6 +77,16 @@ Parameter changes will immediately affect how POIs and loot are generated across
 ## Example Outputs
 
 ![Example output](example.gif)
+
+## Feedback Notes
+
+- Edison said everything is very customizable and very adjustable
+- Edison Really likes that you can toggle the amount of loot that spawns
+- Edison says readability needs improvement which was later improved
+- Keith liked the visuals and presentation of the tool
+- Keith said everything is organized and customizable
+- Keith says percents don’t add up to 100%
+- Keith suggests adding labels and a legend which was added later
 
 ---
 
