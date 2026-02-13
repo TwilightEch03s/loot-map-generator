@@ -45,6 +45,11 @@ public class LootGenerator : MonoBehaviour
 
     public enum LootRarity { Common, Uncommon, Rare, Epic, Legendary }
 
+    public class Loot : MonoBehaviour
+    {
+        public LootRarity rarity;
+    }
+
     private List<GameObject> generatedLoot = new List<GameObject>();
 
     void Start()
@@ -63,6 +68,11 @@ public class LootGenerator : MonoBehaviour
         
         // Regenerate
         GenerateLoot();
+    }
+
+    public List<GameObject> GetGeneratedLoot()
+    {
+        return generatedLoot;
     }
 
     // Generate loot items within POIs based on their difficulty
@@ -111,6 +121,12 @@ public class LootGenerator : MonoBehaviour
                 GameObject loot = Instantiate(lootPrefab, pos, Quaternion.identity);
                 SpriteRenderer sr = loot.GetComponent<SpriteRenderer>();
                 LootRarity rarity = GetRarityForDifficulty(poi.difficulty);
+                Loot lootScript = loot.GetComponent<Loot>();
+                if (lootScript == null)
+                {
+                    lootScript = loot.AddComponent<Loot>();
+                }
+                lootScript.rarity = rarity;
                 sr.color = GetColorForRarity(rarity);
                 generatedLoot.Add(loot);
             }
@@ -154,6 +170,12 @@ public class LootGenerator : MonoBehaviour
                 GameObject loot = Instantiate(lootPrefab, pos, Quaternion.identity);
                 SpriteRenderer sr = loot.GetComponent<SpriteRenderer>();
                 LootRarity rarity = GetRandomRarity();
+                Loot lootScript = loot.GetComponent<Loot>();
+                if (lootScript == null)
+                {
+                    lootScript = loot.AddComponent<Loot>();
+                }
+                lootScript.rarity = rarity;
                 sr.color = GetColorForRarity(rarity);
                 generatedLoot.Add(loot);
             }

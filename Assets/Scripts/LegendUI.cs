@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class LegendUI : MonoBehaviour
@@ -7,61 +8,35 @@ public class LegendUI : MonoBehaviour
     private PoiGenerator poiGenerator;
     private LootGenerator lootGenerator;
     private Vector2 scrollPosition = Vector2.zero;
-    private const string SettingsFileName = "loot_settings.json";
+    private const string SettingsFileName = "loot_generation.json";
 
     [Serializable]
-    private class PoiSettings
+    private class PoiSnapshot
     {
-        public int poiCount;
-        public float poiSizeMin;
-        public float poiSizeMax;
-        public float easyPoiChance;
-        public float mediumPoiChance;
-        public float hardPoiChance;
-        public Vector2 islandSize;
+        public Vector2 position;
+        public Vector2 size;
+        public string difficulty;
     }
 
     [Serializable]
-    private class LootSettings
+    private class LootSnapshot
     {
-        public int lootPerPOI;
-        public int randomLootCount;
-        public Vector2 islandSize;
-        public int easyCommonChance;
-        public int easyUncommonChance;
-        public int easyRareChance;
-        public int easyEpicChance;
-        public int easyLegendaryChance;
-        public int mediumCommonChance;
-        public int mediumUncommonChance;
-        public int mediumRareChance;
-        public int mediumEpicChance;
-        public int mediumLegendaryChance;
-        public int hardCommonChance;
-        public int hardUncommonChance;
-        public int hardRareChance;
-        public int hardEpicChance;
-        public int hardLegendaryChance;
-        public int randomCommonChance;
-        public int randomUncommonChance;
-        public int randomRareChance;
-        public int randomEpicChance;
-        public int randomLegendaryChance;
+        public Vector2 position;
+        public string rarity;
     }
 
     [Serializable]
-    private class SettingsData
+    private class GenerationData
     {
         public string savedAtUtc;
-        public PoiSettings poi;
-        public LootSettings loot;
+        public List<PoiSnapshot> pois;
+        public List<LootSnapshot> loot;
     }
 
     void Start()
     {
         poiGenerator = FindFirstObjectByType<PoiGenerator>();
         lootGenerator = FindFirstObjectByType<LootGenerator>();
-        LoadSettingsFromJson();
     }
 
     void OnGUI()
@@ -312,9 +287,9 @@ public class LegendUI : MonoBehaviour
         int regenerateY = Screen.height - 45;
         int saveY = regenerateY - 45;
 
-        if (GUI.Button(new Rect(rightX, saveY, buttonWidth, buttonHeight), "SAVE SETTINGS", actionButtonStyle))
+        if (GUI.Button(new Rect(rightX, saveY, buttonWidth, buttonHeight), "SAVE GENERATION", actionButtonStyle))
         {
-            SaveSettingsToJson();
+            SaveGenerationToJson();
         }
 
         // Regenerate button at bottom
@@ -341,118 +316,80 @@ public class LegendUI : MonoBehaviour
         GUI.Label(new Rect(x + textOffset, y, 150, height), label, style);
     }
 
-    private void SaveSettingsToJson()
+    private void SaveGenerationToJson()
     {
         if (poiGenerator == null && lootGenerator == null)
         {
-            Debug.LogWarning("No generators found to save settings.");
+            Debug.LogWarning("No generators found to save generation.");
             return;
         }
 
-        SettingsData data = new SettingsData
+        List<PoiSnapshot> poiSnapshots = null;
+        if (poiGenerator != null)
+        {
+            poiSnapshots = new List<PoiSnapshot>();
+            foreach (GameObject poi in poiGenerator.GetGeneratedPOIs())
+            {
+                if (poi == null)
+                {
+                    continue;
+                }
+
+                PoiGenerator.POI poiScript = poi.GetComponent<PoiGenerator.POI>();
+                if (poiScript == null)
+                {
+                    continue;
+                }
+
+                Vector3 pos = poi.transform.position;
+                Vector3 scale = poi.transform.localScale;
+
+                poiSnapshots.Add(new PoiSnapshot
+                {
+                    position = new Vector2(pos.x, pos.y),
+                    size = new Vector2(scale.x, scale.y),
+                    difficulty = poiScript.difficulty.ToString()
+                });
+            }
+        }
+
+        List<LootSnapshot> lootSnapshots = null;
+        if (lootGenerator != null)
+        {
+            lootSnapshots = new List<LootSnapshot>();
+            foreach (GameObject loot in lootGenerator.GetGeneratedLoot())
+            {
+                if (loot == null)
+                {
+                    continue;
+                }
+
+                LootGenerator.Loot lootScript = loot.GetComponent<LootGenerator.Loot>();
+                if (lootScript == null)
+                {
+                    continue;
+                }
+
+                Vector3 pos = loot.transform.position;
+                lootSnapshots.Add(new LootSnapshot
+                {
+                    position = new Vector2(pos.x, pos.y),
+                    rarity = lootScript.rarity.ToString()
+                });
+            }
+        }
+
+        GenerationData data = new GenerationData
         {
             savedAtUtc = DateTime.UtcNow.ToString("yyyy-MM-ddTHH:mm:ss.fffZ"),
-            poi = poiGenerator != null
-                ? new PoiSettings
-                {
-                    poiCount = poiGenerator.poiCount,
-                    poiSizeMin = poiGenerator.poiSizeMin,
-                    poiSizeMax = poiGenerator.poiSizeMax,
-                    easyPoiChance = poiGenerator.easyPoiChance,
-                    mediumPoiChance = poiGenerator.mediumPoiChance,
-                    hardPoiChance = poiGenerator.hardPoiChance,
-                    islandSize = poiGenerator.islandSize
-                }
-                : null,
-            loot = lootGenerator != null
-                ? new LootSettings
-                {
-                    lootPerPOI = lootGenerator.lootPerPOI,
-                    randomLootCount = lootGenerator.randomLootCount,
-                    islandSize = lootGenerator.islandSize,
-                    easyCommonChance = lootGenerator.easyCommonChance,
-                    easyUncommonChance = lootGenerator.easyUncommonChance,
-                    easyRareChance = lootGenerator.easyRareChance,
-                    easyEpicChance = lootGenerator.easyEpicChance,
-                    easyLegendaryChance = lootGenerator.easyLegendaryChance,
-                    mediumCommonChance = lootGenerator.mediumCommonChance,
-                    mediumUncommonChance = lootGenerator.mediumUncommonChance,
-                    mediumRareChance = lootGenerator.mediumRareChance,
-                    mediumEpicChance = lootGenerator.mediumEpicChance,
-                    mediumLegendaryChance = lootGenerator.mediumLegendaryChance,
-                    hardCommonChance = lootGenerator.hardCommonChance,
-                    hardUncommonChance = lootGenerator.hardUncommonChance,
-                    hardRareChance = lootGenerator.hardRareChance,
-                    hardEpicChance = lootGenerator.hardEpicChance,
-                    hardLegendaryChance = lootGenerator.hardLegendaryChance,
-                    randomCommonChance = lootGenerator.randomCommonChance,
-                    randomUncommonChance = lootGenerator.randomUncommonChance,
-                    randomRareChance = lootGenerator.randomRareChance,
-                    randomEpicChance = lootGenerator.randomEpicChance,
-                    randomLegendaryChance = lootGenerator.randomLegendaryChance
-                }
-                : null
+            pois = poiSnapshots,
+            loot = lootSnapshots
         };
 
         string filePath = GetSettingsFilePath();
         string json = JsonUtility.ToJson(data, true);
         File.WriteAllText(filePath, json);
-        Debug.Log("Saved settings to: " + filePath);
-    }
-
-    private void LoadSettingsFromJson()
-    {
-        string filePath = GetSettingsFilePath();
-        if (!File.Exists(filePath))
-        {
-            return;
-        }
-
-        string json = File.ReadAllText(filePath);
-        SettingsData data = JsonUtility.FromJson<SettingsData>(json);
-        if (data == null)
-        {
-            Debug.LogWarning("Failed to parse settings JSON.");
-            return;
-        }
-
-        if (poiGenerator != null && data.poi != null)
-        {
-            poiGenerator.poiCount = data.poi.poiCount;
-            poiGenerator.poiSizeMin = data.poi.poiSizeMin;
-            poiGenerator.poiSizeMax = data.poi.poiSizeMax;
-            poiGenerator.easyPoiChance = data.poi.easyPoiChance;
-            poiGenerator.mediumPoiChance = data.poi.mediumPoiChance;
-            poiGenerator.hardPoiChance = data.poi.hardPoiChance;
-            poiGenerator.islandSize = data.poi.islandSize;
-        }
-
-        if (lootGenerator != null && data.loot != null)
-        {
-            lootGenerator.lootPerPOI = data.loot.lootPerPOI;
-            lootGenerator.randomLootCount = data.loot.randomLootCount;
-            lootGenerator.islandSize = data.loot.islandSize;
-            lootGenerator.easyCommonChance = data.loot.easyCommonChance;
-            lootGenerator.easyUncommonChance = data.loot.easyUncommonChance;
-            lootGenerator.easyRareChance = data.loot.easyRareChance;
-            lootGenerator.easyEpicChance = data.loot.easyEpicChance;
-            lootGenerator.easyLegendaryChance = data.loot.easyLegendaryChance;
-            lootGenerator.mediumCommonChance = data.loot.mediumCommonChance;
-            lootGenerator.mediumUncommonChance = data.loot.mediumUncommonChance;
-            lootGenerator.mediumRareChance = data.loot.mediumRareChance;
-            lootGenerator.mediumEpicChance = data.loot.mediumEpicChance;
-            lootGenerator.mediumLegendaryChance = data.loot.mediumLegendaryChance;
-            lootGenerator.hardCommonChance = data.loot.hardCommonChance;
-            lootGenerator.hardUncommonChance = data.loot.hardUncommonChance;
-            lootGenerator.hardRareChance = data.loot.hardRareChance;
-            lootGenerator.hardEpicChance = data.loot.hardEpicChance;
-            lootGenerator.hardLegendaryChance = data.loot.hardLegendaryChance;
-            lootGenerator.randomCommonChance = data.loot.randomCommonChance;
-            lootGenerator.randomUncommonChance = data.loot.randomUncommonChance;
-            lootGenerator.randomRareChance = data.loot.randomRareChance;
-            lootGenerator.randomEpicChance = data.loot.randomEpicChance;
-            lootGenerator.randomLegendaryChance = data.loot.randomLegendaryChance;
-        }
+        Debug.Log("Saved generation to: " + filePath);
     }
 
     private string GetSettingsFilePath()
