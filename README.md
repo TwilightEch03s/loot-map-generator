@@ -24,7 +24,9 @@ Parameter changes will immediately affect how POIs and loot are generated across
 
 - `Poi Count` – Number of POIs on the map  
 - `Poi Size Min` – Minimum size of the POI  
-- `Poi Size Max` – Maximum size of the POI  
+- `Poi Size Max` – Maximum size of the POI
+
+#### POI Rarity Chances
 
 - `Easy Poi Chance` – Chance of an easy POI spawning (ranges from 0–1)  
 - `Medium Poi Chance` – Chance of a medium POI spawning (ranges from 0–1)  
