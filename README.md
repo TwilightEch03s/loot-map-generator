@@ -71,6 +71,12 @@ Parameter changes will immediately affect how POIs and loot are generated across
 
 ---
 
+## Example Outputs
+
+![Example output](example.gif)
+
+---
+
 ## Limitations
 
 - The system currently supports five loot rarities:
