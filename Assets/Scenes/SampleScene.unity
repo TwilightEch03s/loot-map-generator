@@ -167,9 +167,9 @@ MonoBehaviour:
   poiCount: 7
   poiSizeMin: 1
   poiSizeMax: 3
-  easyChance: 0.5
-  mediumChance: 0.4
-  hardChance: 0.35
+  easyPoiChance: 0.5
+  mediumPoiChance: 0.4
+  hardPoiChance: 0.35
   islandSize: {x: 10, y: 10}
 --- !u!1 &519420028
 GameObject:
