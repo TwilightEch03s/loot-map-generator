@@ -13,7 +13,7 @@
 3. Adjust generation parameters:
    - In the in-game **settings panel**, or  
    - By selecting either `LootManager` or `PoiGenerator` in the **Hierarchy** and modifying their settings.
-
+4. If you want to save your map generation, click the **save generation** button to save a JSON file containing loot and POI positions.
 Parameter changes will immediately affect how POIs and loot are generated across the map.
 
 ---
