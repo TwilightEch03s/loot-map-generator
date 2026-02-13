@@ -1,0 +1,43 @@
+{
+    "savedAtUtc": "2026-02-13T01:05:20.024Z",
+    "poi": {
+        "poiCount": 7,
+        "poiSizeMin": 1.0,
+        "poiSizeMax": 3.0,
+        "easyPoiChance": 0.5,
+        "mediumPoiChance": 0.4000000059604645,
+        "hardPoiChance": 0.3499999940395355,
+        "islandSize": {
+            "x": 10.0,
+            "y": 10.0
+        }
+    },
+    "loot": {
+        "lootPerPOI": 10,
+        "randomLootCount": 120,
+        "islandSize": {
+            "x": 10.0,
+            "y": 10.0
+        },
+        "easyCommonChance": 60,
+        "easyUncommonChance": 35,
+        "easyRareChance": 5,
+        "easyEpicChance": 0,
+        "easyLegendaryChance": 0,
+        "mediumCommonChance": 0,
+        "mediumUncommonChance": 60,
+        "mediumRareChance": 35,
+        "mediumEpicChance": 5,
+        "mediumLegendaryChance": 0,
+        "hardCommonChance": 0,
+        "hardUncommonChance": 0,
+        "hardRareChance": 60,
+        "hardEpicChance": 35,
+        "hardLegendaryChance": 5,
+        "randomCommonChance": 50,
+        "randomUncommonChance": 30,
+        "randomRareChance": 15,
+        "randomEpicChance": 4,
+        "randomLegendaryChance": 1
+    }
+}
